@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSE Test</title>
+</head>
+<body>
+<div th:each="item : ${sseData}">
+    <!-- 여기에서 item을 사용하여 각 항목의 값을 표시 -->
+    <p th:utext="${item}"></p>
+</div>
+
+<script th:inline="javascript">
+    var eventSource = new EventSource('/api/v1/GET');
+
+    eventSource.onmessage = function(event) {
+        var eventData = JSON.parse(event.data);
+        // 여기에서 eventData를 사용하여 필요한 처리 수행
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+
+<!--Spring security Authentication 객체에서 값을 꺼내 올 수 있음.-->
+    Logged user: <span sec:authentication="name"></span>
+    Roles: <span sec:authentication="principal.authorities"></span>
+
+<!-- 키,벨류 설정도 안했는데 아래 어떻게 출력되느지 모르겠네.... ????   -->
+<!--    <h3 class="overview-normalize">접속 아이디  </h3>-->
+<!--    <p th:text="${loginId}"></p>-->
+<!--    <hr/>-->
+
+<!--    <h3 class="overview-normalize">역할 </h3>-->
+<!--    <p th:text="${loginRoles}"></p>-->
+    <hr/>
+    <!--1. 세션에 추가 권한에 대하여 정의 후 화면에서 출력-->
+    <p> 1:read only , 2: write only, 3: both </p>
+    <p>[[${session.grade}]]</p>
+
+    <!--2. authorities role에 권한 추가하여 -->
+
+
+
+    <h3 class="overview-normalize">역할에 따른 페이지 이동 권한 확인</h3>
+    <p>
+        <button onclick="location.href='/view/setting/admin'" class="btn btn-sm btn-success">관리자 설정 페이지(관리자만)</button>
+        <button onclick="location.href='/view/setting/user'" class="btn btn-sm btn-info">유저 설정 페이지(유저만)</button>
+    </p>
+    <hr/>
+
+
+    <form method="post" action="/logout">
+        <button class="btn btn-sm btn-danger btn-block" type="submit">로그아웃</button>
+    </form>
+</div>
+</body>
+</html>
